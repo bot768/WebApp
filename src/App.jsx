@@ -60,7 +60,7 @@ function App() {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer sk-036fd619e34046c8ba4f2fd7f078632a'
+                    'Authorization': 'Bearer sk-88201f9256774421a8ebd2c177a24dd1'
                 },
                 body: JSON.stringify({
                     model: "deepseek-chat",
