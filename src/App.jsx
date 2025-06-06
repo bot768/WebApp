@@ -56,11 +56,11 @@ function App() {
         }
         setLoadingRecommendations(true);
         try {
-            const response = await fetch('https://api.deepseek.com/v1', {
+            const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': 'Bearer sk-88201f9256774421a8ebd2c177a24dd1'
+                    'Authorization': 'Bearer sk-036fd619e34046c8ba4f2fd7f078632a'
                 },
                 body: JSON.stringify({
                     model: "deepseek-chat",
