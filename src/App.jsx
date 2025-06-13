@@ -1,14 +1,14 @@
-import React, {useEffect, useState} from 'react';
-import {Layout, Row, Col, Alert} from 'antd';
+import React, { useEffect, useState } from 'react';
+import { Layout, Row, Col, Alert } from 'antd';
 import LanguageSwitcher from './components/LanguageSwitcher';
 import WeatherSearch from './components/WeatherSearch';
-import CurrentWeather from './components/CurrentWeather';  // 添加这行导入
-import HourlyForecast from './components/HourlyForecast';  // 添加这行导入
+import CurrentWeather from './components/CurrentWeather';
+import HourlyForecast from './components/HourlyForecast';
 import Recommendations from './components/Recommendations';
-import {translations} from './translations.jsx';
+import { translations } from './translations.jsx';
 import SolarTerms from "./components/SolarTerms";
 
-const {Header} = Layout;
+const { Header } = Layout;
 
 function App() {
     const [currentLanguage, setCurrentLanguage] = useState('zh');
@@ -18,15 +18,24 @@ function App() {
     const [hourlyData, setHourlyData] = useState([]);
     const [aiRecommendations, setAiRecommendations] = useState(null);
     const [loadingRecommendations, setLoadingRecommendations] = useState(false);
+    const [testMessage, setTestMessage] = useState('');
+
     useEffect(() => {
         loadAMapScript()
-            .then(() => getLocation())
-            .catch(console.error);
+           .then(() => getLocation())
+           .catch(console.error);
+
+        // 测试后端接口
+        fetch('/api/test')
+           .then(response => response.json())
+           .then(data => setTestMessage(data.message))
+           .catch(error => console.error('请求后端接口失败:', error));
     }, []);
 
     const changeLanguage = (language) => {
         setCurrentLanguage(language);
     };
+
     const loadAMapScript = () => {
         if (typeof window.AMap !== 'undefined') {
             return Promise.resolve();
@@ -40,6 +49,7 @@ function App() {
             document.head.appendChild(script);
         });
     };
+
     const convertChineseToPinyin = (cityName) => {
         const cityMap = {
             '北京': 'beijing',
@@ -215,7 +225,6 @@ function App() {
                             setCityName={setCityName}
                         />
                     </Col>
-
                 </Row>
             </Header>
             {error && (
@@ -223,10 +232,12 @@ function App() {
                     message={error}
                     type="error"
                     showIcon
-                    style={{margin: '16px', width: 'calc(100% - 32px)'}}
+                    style={{ margin: '16px', width: 'calc(100% - 32px)' }}
                 />
             )}
-            {
+            <div style={{ padding: '16px' }}>
+                <p>{testMessage}</p>
+            </div>
             <div style={{
                 padding: '16px'
             }}>
@@ -235,12 +246,11 @@ function App() {
                     overflowX: 'auto',
                     whiteSpace: 'nowrap'
                 }}>
-                    <SolarTerms/>
+                    <SolarTerms />
                 </div>
             </div>
-            }
             {weatherData && (
-                <div style={{padding: '16px'}}>
+                <div style={{ padding: '16px' }}>
                     <CurrentWeather
                         currentLanguage={currentLanguage}
                         weatherData={weatherData}
@@ -248,17 +258,8 @@ function App() {
                     <div style={{
                         marginTop: '16px',
                         overflowX: 'auto',
-                        whiteSpace: 'nowrap'
                     }}>
-                        <HourlyForecast
-                            currentLanguage={currentLanguage}
-                            hourlyData={hourlyData}
-                        />
-                        <Recommendations
-                            recommendations={aiRecommendations}
-                            loading={loadingRecommendations}
-                            currentLanguage={currentLanguage}
-                        />
+                        {/* 这里可以添加小时预报的内容 */}
                     </div>
                 </div>
             )}
