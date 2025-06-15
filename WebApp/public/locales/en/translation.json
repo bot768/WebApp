@@ -1,0 +1,16 @@
+{
+  "login": "Login",
+  "register": "Register",
+  "logout": "Logout",
+  "welcome": "Welcome, {name}",
+  "username": "Username",
+  "password": "Password",
+  "submit": "Submit",
+  "login_success": "Login successful!",
+  "register_success": "Registration successful, please login!",
+  "network_error": "Network error",
+  "required_username": "Please enter username",
+  "required_password": "Please enter password",
+  "chinese": "Chinese",
+  "english": "English"
+}

@@ -1,0 +1,16 @@
+{
+  "login": "登录",
+  "register": "注册",
+  "logout": "退出登录",
+  "welcome": "欢迎，{name}",
+  "username": "用户名",
+  "password": "密码",
+  "submit": "提交",
+  "login_success": "登录成功！",
+  "register_success": "注册成功，请登录！",
+  "network_error": "网络错误",
+  "required_username": "请输入用户名",
+  "required_password": "请输入密码",
+  "chinese": "中文",
+  "english": "英文"
+}
